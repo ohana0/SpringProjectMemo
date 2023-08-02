@@ -1,0 +1,27 @@
+@charset "UTF-8";
+#wrap{
+	width:1200px;
+	margin:0 auto;
+}
+header{
+	height:80px;
+	background-color:lightgray;
+}
+footer{
+	height:60px;
+	background-color: lightgray;
+}
+.contents{
+	height:400px;
+}
+.contents>.join-box{
+	width:250px;
+	height:400px;
+}
+.contents>.join-box>.title{
+	font-weight: bold;
+}
+.contents>.login-box{
+	width:250px;
+	height:200px;
+}
