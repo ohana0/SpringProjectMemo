@@ -13,22 +13,79 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="d-flex align-items-center">
-			<h2 class="pl-3">Memo</h2>
-		</header>
+		<%@ include file="/WEB-INF/jsp/include/header.jsp" %>
 		<section class="contents d-flex justify-content-center align-items-center">
 			<div class="login-box">
 				<input type="text" class="form-control mt-2" placeholder="Username" id="idInput">
 				<input type="password" class="form-control mt-2" placeholder="****" id="passwordInput">
-				<button type="button" class="btn btn-block btn-dark mt-2">로그인</button>
+				<button type="button" class="btn btn-block btn-dark mt-2" id="loginBtn">로그인</button>
 				<a href="/user/join-view" class="d-flex justify-content-center mt-1">회원가입</a>
 			</div>
 				
 		</section>
-		<footer class="d-flex justify-content-center align-items-center">
-			<div>Copyright 2018. memo all rights reserved.</div>
-		</footer>
+		<%@ include file="/WEB-INF/jsp/include/footer.jsp" %>		
+
 	</div>
+	
+<script>
+	$(document).ready(function(){
+		$("#loginBtn").on("click",function(){
+			let loginId = $("#idInput").val();
+			let password = $("#passwordInput").val();
+			if(loginId == ""){
+				alert("아이디를 입력하세요!");
+				return;
+			}
+			else if(password == ""){
+				alert("비밀번호를 입력하세요!");
+				return;
+			}
+			else{
+				$.ajax({
+					type:"post"
+					,url:"/user/login"
+					,data:{
+						"loginId":loginId
+						,"password":password
+						}
+					,success:function(data){
+						if(data.result == "success"){
+							location.href = "/post/list-view"
+						}						
+						else{
+							alert("아이디또는 비밀번호가 틀립니다.");
+						}
+						
+					}
+					
+					
+					
+				})
+			}
+			
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	})
+		
+		
+</script>
+	}
+	
 
 </body>
 </html>

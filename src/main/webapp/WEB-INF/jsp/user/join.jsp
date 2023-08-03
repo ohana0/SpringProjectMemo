@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="d-flex align-items-center">
-			<h2 class="pl-3">Memo</h2>
-		</header>
+		<%@ include file="/WEB-INF/jsp/include/header.jsp" %>
 		<section class="contents d-flex justify-content-center">
 			<div class="join-box">
 				<h1 class="d-flex justify-content-center m-3 title">회원가입</h1>
@@ -30,9 +29,7 @@
 			
 			</div>
 		</section>
-		<footer class="d-flex justify-content-center align-items-center">
-			<div>Copyright 2018. memo all rights reserved.</div>
-		</footer>
+		<%@ include file="/WEB-INF/jsp/include/footer.jsp" %>
 	
 	
 	</div>

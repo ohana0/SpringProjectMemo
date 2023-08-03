@@ -1,5 +1,7 @@
 package com.ohana0.memo.user.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +31,24 @@ public class UserService {
 		
 		return user; 
 	}
-
-	public  login(String loginId, String password) {
-
-		
+	
+	public User getUser(String loginId,String password) {
+		//String encryptPassword = EncryptUtils.md5(password);
+		List<User> userList = userRepository.findByLoginIdAndPassword(loginId,password);
+		User user;
+		if(userList.size() != 0) {
+			user = userList.get(0);
+			
+		}
+		else {
+			user = null;
+		}
+		return user;
 	}
+	
+	
+	
+
 	
 	
 	
