@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>         
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,28 @@
 		
 		<section class="contents">
 			<h1 class="text-center">메모리스트</h1>
-			
-		</section>
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>제목</th>
+						<th>시간</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+<c:forEach var="memo" items="${postList }" varStatus="status">
+					<tr>
+						<td>${status.count }</td>
+						<td><a href="/post/detail-view/${memo.id }">${memo.title }</a></td>
+						<td><fmt:formatDate value="${memo.createdAt}" pattern="yyyy-MM-dd hh-mm-ss"></fmt:formatDate></td>
+					</tr>
+</c:forEach>
+				</tbody>
+		</table>
 		
+			<a href="/post/create-view" class="btn btn-secondary">글쓰기</a>
+		</section>
 		
 		
 		<%@ include file="/WEB-INF/jsp/include/footer.jsp" %>

@@ -11,9 +11,7 @@ footer{
 	height:60px;
 	background-color: lightgray;
 }
-.contents{
-	height:400px;
-}
+
 .contents>.join-box{
 	width:250px;
 	height:400px;
@@ -25,3 +23,7 @@ footer{
 	width:250px;
 	height:200px;
 }
+.contents>.contents-box{
+	width:800px;
+}
+
