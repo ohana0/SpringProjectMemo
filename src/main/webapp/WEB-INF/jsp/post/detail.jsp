@@ -27,11 +27,11 @@
 					
 				</div>
 				<textarea rows="10" class="form-control m-4" id="contentInput" placeholder="내용을 입력해 주세요">${memo.content }</textarea>
-				<input type="file" class="form-control m-4">
+				<img alt="${memo.imagePath }" src="${memo.imagePath }">
 				<div class="d-flex justify-content-between m-4">
 					<div class="d-flex justify-content-between col-6">
 						<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
-						<a href="/post/delete" class="btn btn-danger">삭제</a>
+						<button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
 					</div>
 					<button type="button" class="btn btn-secondary" id="saveBtn">수정</button>
 				</div>
@@ -45,6 +45,27 @@
 		<%@ include file="/WEB-INF/jsp/include/footer.jsp" %>
 <script>
 	$(document).ready(function(){
+		
+		
+		
+		$("#deleteBtn").on("click",function(){
+			$.ajax({
+				type:"delete"
+				,url:"/post/delete"
+				,data:{}
+				,success:function(data){
+					if(data.result == "success"){
+						location.href="/post/list-view";
+					}
+					else{
+						alert("삭제 실패");
+					}
+				}
+				,error:function(){
+					alert("오류발생");
+				}
+			})
+		})
 		$("#saveBtn").on("click",function(){
 			let title = $("#titleInput").val();
 			let content = $("#contentInput").val();
@@ -70,7 +91,9 @@
 						alert("수정 실패");
 					}
 				}
-				
+				,error:function(){
+					alert("오류발생");
+				}
 			})
 			
 			

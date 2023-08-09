@@ -20,18 +20,19 @@
 		<section class="contents d-flex justify-content-center">
 			<div class="contents-box">
 				<h1 class="text-center m-4">메모 입력</h1>
-				
+
 				<div class="d-flex m-4 align-items-center">
 					<label class="col-2 text-center">제목 : </label>
 					<input type="text" class="form-control col-10" placeholder="내용을 입력해 주세요" id="titleInput">
 					
 				</div>
 				<textarea rows="10" class="form-control m-4" id="contentInput" placeholder="내용을 입력해 주세요"></textarea>
-				<input type="file" class="form-control m-4">
+				<input type="file" class="form-control m-4" id="fileInput">
 				<div class="d-flex justify-content-between m-4">
 					<a href="/post/list-view" class="btn btn-secondary">목록으로</a>
-					<button type="button" class="btn btn-secondary" id="saveBtn">저장</button>
+					<button type="submit" class="btn btn-secondary" id="saveBtn">저장</button>
 				</div>
+
 			</div>
 
 			
@@ -55,10 +56,22 @@
 				alert("내용을 입력하세요");
 				return;
 			}
+			
+			var file =  $("#fileInput")[0].files[0];
+			
+			var formData = new FormData();
+			formData.append("title",title);
+			formData.append("content",content);
+			formData.append("file",file);
+			
+			
 			$.ajax({
 				type: "post"
 				,url: "/post/create"
-				,data: {"title":title,"content":content}
+				,data: formData
+			    ,enctype: 'multipart/form-data' // 파일 업로드를 위한 필수 설정
+			    ,processData: false              // 파일 업로드를 위한 필수 설정
+			    ,contentType: false              // 파일 업로드를 위한 필수 설정
 				,success:function(data){
 					if(data.result == "success"){
 						location.href="/post/list-view";

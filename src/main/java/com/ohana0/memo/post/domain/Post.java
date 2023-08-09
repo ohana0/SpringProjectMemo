@@ -2,6 +2,10 @@ package com.ohana0.memo.post.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 @Getter
@@ -13,7 +17,13 @@ public class Post {
 	private String title;
 	private String content;
 	private String imagePath;
+	
+	@UpdateTimestamp
+	@Column(name="createdAt",updatable=false)
 	private Date createdAt;
+	
+	@UpdateTimestamp
+	@Column(name="updatedAt",updatable=true)
 	private Date updatedAt;
 	
 	

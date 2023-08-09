@@ -31,9 +31,9 @@
 				<tbody>
 <c:forEach var="memo" items="${postList }" varStatus="status">
 					<tr>
-						<td>${status.count }</td>
+						<td>${memo.id }</td>
 						<td><a href="/post/detail-view/${memo.id }">${memo.title }</a></td>
-						<td><fmt:formatDate value="${memo.createdAt}" pattern="yyyy-MM-dd hh-mm-ss"></fmt:formatDate></td>
+						<td><fmt:formatDate value="${memo.createdAt}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
 					</tr>
 </c:forEach>
 				</tbody>

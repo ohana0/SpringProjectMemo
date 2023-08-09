@@ -37,8 +37,8 @@ public class PostController {
 	}
 	
 	@GetMapping("/detail-view/{id}")
-	public String detail(@PathVariable("id") int id , Model model) {
-		
+	public String detail(@PathVariable("id") int id , Model model, HttpSession session) {
+		session.setAttribute("postId", id);
 		Post post = postService.getPost(id);
 		model.addAttribute("memo", post);
 		return "/post/detail";
